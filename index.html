@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>PWA</title>
+		<link rel="manifest" href="./manifest.json">
+		<style>
+			*{
+				margin: 5;
+				box-sizing: border-box;
+			}
+			body{
+				background-color: solid black;
+				min-height: 100vh;
+				color:rgb(0, 0, 0);
+				display: grid;
+				place-items: center;
+			}
+
+			section{
+				background: grey;
+				padding: 20px;
+				border-radius: 5px;
+				text-align: center;
+			}
+
+			p{
+				font-size: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<p>0</p>
+			<button onclick="aumentar()">Mais</button>
+			<button onclick="diminuir()">Menos</button>
+		</section>
+	</body>	
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('./sw.js');
+		}
+
+		let numero = 0;
+		function aumentar(){
+			numero=numero+1;
+			render();
+		}
+		function diminuir(){
+			numero=numero-1;
+			render();
+		}
+
+		function render(){
+			const p = document.querySelector("p")
+			p.innerText = numero
+		}
+
+	</script>
+</html>
